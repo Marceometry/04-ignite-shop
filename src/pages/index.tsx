@@ -11,14 +11,7 @@ import { HomeContainer, Product } from '../styles/pages/home'
 import 'keen-slider/keen-slider.min.css'
 import Stripe from 'stripe'
 import { Bag } from '../assets/Bag'
-import { useCartContext } from '../contexts/CartContext'
-
-interface IProduct {
-  id: string
-  name: string
-  imageUrl: string
-  price: string
-}
+import { IProduct, useCartContext } from '../contexts/CartContext'
 
 interface HomeProps {
   products: IProduct[]
@@ -93,6 +86,7 @@ export const getStaticProps: GetStaticProps = async () => {
         style: 'currency',
         currency: 'BRL',
       }).format(price.unit_amount / 100),
+      priceId: price.id,
     }
   })
 

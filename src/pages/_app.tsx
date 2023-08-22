@@ -1,4 +1,5 @@
 import { AppProps } from 'next/app'
+import { useRouter } from 'next/router'
 import Image from 'next/future/image'
 
 import { globalStyles } from '../styles/global'
@@ -11,12 +12,16 @@ import { Cart } from '../components/Cart'
 globalStyles()
 
 function App({ Component, pageProps }: AppProps) {
+  const router = useRouter()
+
   return (
     <CartContextProvider>
       <Container>
-        <Header>
+        <Header
+          justify={router.pathname === '/success' ? 'center' : 'space-between'}
+        >
           <Image src={logoImg} alt='' />
-          <Cart />
+          {router.pathname === '/success' ? '' : <Cart />}
         </Header>
 
         <Component {...pageProps} />

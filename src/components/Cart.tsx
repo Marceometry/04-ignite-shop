@@ -33,9 +33,7 @@ export const Cart = () => {
     try {
       setIsCreatingCheckoutSession(true)
 
-      const response = await axios.post('/api/checkout', {
-        // priceId: products.defaultPriceId,
-      })
+      const response = await axios.post('/api/checkout', { products })
 
       const { checkoutUrl } = response.data
 
